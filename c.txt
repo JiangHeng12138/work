@@ -1,8 +1,12 @@
 DADADAwork1
 JIANGHEN
 
+<<<<<<< HEAD
 
 JIANGHENG
 
 jiangheng
+=======
+sda:
+>>>>>>> def6805... modify a.txt
 
