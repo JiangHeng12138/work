@@ -1,6 +1,5 @@
-<<<<<<< HEAD
+
 
 jdddddianghen
-=======
 jdddddiangheng.com
->>>>>>> f262228... modify a.txt
+
