@@ -1,0 +1,21 @@
+digraph pic1 {
+  comm_base_dispatch -> comm_point_udp_callback
+  comm_point_udp_callback -> recvfrom
+  comm_point_udp_callback -> worker_handle_request
+  worker_handle_request -> acl_list_lookup
+  worker_handle_request -> comm_point_drop_reply [label="error"]
+  worker_handle_request -> worker_check_request
+  worker_handle_request -> local_zones_answer
+  worker_handle_request -> slabhash_lookup
+  worker_handle_request -> answer_from_cache
+  worker_handle_request -> pending_udp_query [label="send udp query to forwarders"]
+  comm_point_udp_callback -> comm_point_send_udp_msg [label="local zone or cache hit"];
+  pending_udp_query -> comm_timer_create;
+  pending_udp_query -> add_udp_wait_list [label="if outgoing fd not enough"]
+  pending_udp_query -> randomize_and_send_udp;
+  randomize_and_send_udp -> select_id;
+  randomize_and_send_udp -> select_ifport;
+  randomize_and_send_udp -> comm_point_send_udp_msg;
+  randomize_and_send_udp -> comm_timer_set;
+} 
+

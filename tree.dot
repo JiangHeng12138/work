@@ -1,0 +1,26 @@
+digraph pic1 {
+  main [shape=box];
+  main -> log_init;
+  main -> run_daemon;
+  run_daemon -> daemon_init;
+  run_daemon -> config_create;
+  run_daemon -> daemon_open_shared_ports;
+  run_daemon -> daemon_fork;
+  daemon_fork -> daemon_setup_modules;
+  daemon_fork -> daemon_create_workers;
+  daemon_fork -> daemon_start_others;
+  daemon_fork -> worker_init;
+  daemon_fork -> worker_work;
+  daemon_start_others -> thread_start;
+  edge [color=red];
+  thread_start -> worker_init[style=bold];
+  edge [color=black];
+  thread_start -> worker_work;
+  worker_init -> comm_base_create;
+  edge [color=red];
+  worker_init -> listen_create [style=bold];
+  worker_init -> outside_network_create[style=bold];
+  edge [color=black];
+  worker_init -> comm_timer_create;
+  worker_init -> worker_mem_report;
+} 

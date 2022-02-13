@@ -1,0 +1,13 @@
+digraph pic2 {
+	comm_base_dispatch -> comm_point_udp_callback;
+	comm_point_udp_callback -> comm_base_now;
+	comm_point_udp_callback -> recvfrom
+	comm_point_udp_callback -> outnet_udp_cb;
+	outnet_udp_cb -> comm_timer_disable;
+	outnet_udp_cb -> worker_handle_reply;
+	outnet_udp_cb -> portcomm_loweruse;
+	outnet_udp_cb -> pending_delete;
+	outnet_udp_cb -> outnet_send_wait_udp;
+	worker_handle_reply -> mesh_report_reply;
+	worker_handle_reply -> worker_mem_report;
+}
